@@ -19,7 +19,7 @@ const app: FastifyInstance = Fastify({
 }).withTypeProvider<JsonSchemaToTsProvider>();
 
 app.register(FastifyStatic, {
-  root: path.join(__dirname, "static"),
+  root: path.join(__dirname, "../static"),
   prefix: "/static"
 });
 
