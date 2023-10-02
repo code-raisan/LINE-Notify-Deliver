@@ -111,7 +111,7 @@ app.post<{
   return { ok: true, message: "Message added jobs" };
 });
 
-app.get("/secure/dashbord/", async (_request: FastifyRequest, reply: FastifyReply) =>{
+app.get("/secure/dashboard/", async (_request: FastifyRequest, reply: FastifyReply) =>{
   const subscribers = parse(readFileSync("./data/subscribers.csv"));
   return reply.view("dashboard.ejs", {
     APP_NAME: env.APP_NAME,
