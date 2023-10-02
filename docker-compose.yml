@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:7.2
+    volumes:
+      - "./redis/:/data"
+
+  app:
+    build: .
+    ports:
+      - "4000:3000"
+    volumes:
+      - "./data/:/app/data/"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - LINE_NOTIFY_OAUTH_CLIENT_ID=XXXXXX
+      - LINE_NOTIFY_OAUTH_CLIENT_SECRET=XXXXXX
+      - LINE_NOTIFY_OAUTH_CALLBACK=https://<your-domain>/oauth/callback

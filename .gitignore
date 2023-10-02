@@ -1,0 +1,18 @@
+# Editor
+core
+
+# Package
+node_modules
+dist
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+npm-debug.log*
+npm-error.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+.env

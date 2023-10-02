@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "mechatroner.rainbow-csv",
+    "ms-vscode.vscode-typescript-next",
+    "digitalbrainstem.javascript-ejs-support",
+    "ms-azuretools.vscode-docker"
+  ]
+}

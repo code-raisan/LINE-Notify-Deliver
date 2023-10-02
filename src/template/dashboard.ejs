@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <title><%=APP_NAME%></title>
+</head>
+<body>
+  <main class="container-sm" style="padding: 50px;">
+    <h1><%=APP_NAME%> <%=APP_VERSION%></h1>
+    <div style="margin-top: 20px;">
+      <a href="../queue" class="btn btn-primary" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right" style="margin-right: 5px;"></i>Queueダッシュボード</a>
+      <div style="margin-top: 50px;">
+        <div style="display: flex; width: max-content; padding: 5px 10px 5px 10px; border-radius: 10px; background-color: #caffd3">
+          <div style="font-size: 3rem; margin-right: 10px">
+            <i class="bi bi-envelope-at"></i>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <div style="font-weight: bold; font-size: 2rem"><%=subscribers%></div>
+            <div style="color: #797979">Subscribers</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 50px;">
+        <h3>メッセージ配信</h3>
+        <div>
+          <textarea class="form-control" id="message" rows="3"></textarea>
+        </div>
+        <button class="btn btn-success" id="stream" style="margin-top: 10px">配信</button>
+        <div style="margin-top: 10px;">
+          <pre id="pre"></pre>
+        </div>
+      </div>
+    </div>
+  </main>
+  <style>
+    html, body{
+      margin: 0;
+    }
+  </style>
+  <script>
+    const message = document.getElementById("message");
+    const stream_button = document.getElementById("stream");
+    const pre = document.getElementById("pre");
+
+    stream_button.onclick = () =>{
+      if(message.value == "") return alert("Input value");
+      fetch(`../api/notify`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: message.value
+        })
+      }).then(async res =>{
+        pre.innerText = await res.text();
+      }).catch(e =>{
+        pre.innerText = e.message;
+        console.error(e);
+      });
+    }
+  </script>
+</body>
+</html>
