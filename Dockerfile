@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN touch data/subscribers.csv
+RUN mkdir data && touch data/subscribers.csv
 
 RUN yarn install
 
